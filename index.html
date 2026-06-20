@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGP TOURS Galle - Safe & Comfortable Travel Sri Lanka</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Force Tailwind v4 to use class-based dark mode instead of system media queries */
+        @variant dark (html.dark &);
+
+        /* Root Variable Architecture for crisp light/dark mode contrast mapping */
+        :root {
+            --text-heading: #1e3a8a; /* deep blue-950 */
+            --text-body: #374151;    /* dark gray slate */
+            --bg-card: #ffffff;
+            --border-color: #f3f4f6;
+        }
+
+        html.dark {
+            --text-heading: #f1f5f9; /* slate-100 */
+            --text-body: #cbd5e1;    /* slate-300 */
+            --bg-card: #0f172a;     /* slate-900 */
+            --border-color: #1e293b; /* slate-800 */
+        }
+
+        /* Apply semantic variables smoothly without aggressive global overrides */
+        h2, h3, h4, label {
+            color: var(--text-heading);
+        }
+        p {
+            color: var(--text-body);
+        }
+        .bg-white, .route-btn.bg-white {
+            background-color: var(--bg-card);
+            border-color: var(--border-color);
+        }
+
+        /* Global Theme Base Setups */
+        html.dark body {
+            background-color: #020617; /* slate-950 */
+            color: #f8fafc;            /* slate-50 */
+        }
+        html.dark nav {
+            background-color: #0f172a;
+        }
+        html.dark nav span.text-blue-900 {
+            color: #60a5fa;
+        }
+        html.dark input, html.dark select, html.dark textarea {
+            background-color: #1e293b;
+            color: #f8fafc;
+            border-color: #334155;
+        }
+        html.dark input::placeholder, html.dark textarea::placeholder {
+            color: #64748b;
+        }
+        html.dark #theme-toggle {
+            background-color: #1e293b;
+            color: #fb923c;
+            border-color: #334155;
+        }
+
+        /* Keep native calendar picker icon visible in dark mode */
+        html.dark input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            cursor: pointer;
+        }
+
+        /* Clean table line separator fixes for specs view */
+        .divide-y > div {
+            border-color: var(--border-color);
+        }
+        html.dark .bg-gray-50 {
+            background-color: #020617;
+        }
+
+        /* Protection logic to keep the Orange CTA Banner perfectly readable */
+        .keep-light h2, html.dark .keep-light h2 {
+            color: #ffffff;
+        }
+        .keep-light p, html.dark .keep-light p {
+            color: #ffedd5;
+        }
+        .keep-light a.bg-white, html.dark .keep-light a.bg-white {
+            background-color: #ffffff;
+            color: #1e3a8a;
+        }
+
+        /* Customizing Google Translate Dropdown inside the Navbar */
+        #google_translate_element {
+            display: inline-block;
+        }
+        .goog-te-gadget-simple {
+            background-color: transparent !important;
+            border: 1px solid #e5e7eb !important;
+            padding: 6px 10px !important;
+            border-radius: 9999px !important;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        html.dark .goog-te-gadget-simple {
+            border-color: #334155 !important;
+        }
+        .goog-te-gadget-simple .goog-te-menu-value span {
+            color: #374151 !important;
+            font-size: 12px !important;
+            font-weight: 600 !important;
+        }
+        html.dark .goog-te-gadget-simple .goog-te-menu-value span {
+            color: #f8fafc !important;
+        }
+        .goog-te-gadget-icon, .goog-logo-link {
+            display: none !important;
+        }
+        .goog-te-gadget {
+            color: transparent !important;
+        }
+        .skiptranslate iframe {
+            display: none !important;
+        }
+        body {
+            top: 0px !important;
+        }
+    </style>
+
+    <script>
+        // Check local storage or system preference for dark mode instantly
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        // Universal fallback finder for all images to combat hidden extensions
+        function handleImgError(img, baseName) {
+            const formats = ['.jpg', '.jpeg', '.png', '.JPG', '.JPEG', '.PNG', ''];
+            let currentTrack = img.getAttribute('data-retry-index') || '0';
+            let index = parseInt(currentTrack, 10);
+            
+            if (index < formats.length) {
+                img.setAttribute('data-retry-index', index + 1);
+                img.src = 'Img/' + baseName + formats[index];
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased transition-colors duration-300">
+
+    <!-- Navigation Bar -->
+    <nav class="bg-white border-b shadow-md sticky top-0 z-50 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center space-x-2 sm:space-x-3">
+                    <img src="Img/logo.jpg" alt="AGP Tours Logo" class="h-11 w-11 sm:h-14 sm:w-14 object-contain rounded-lg" onerror="handleImgError(this, 'logo')">
+                    <div>
+                        <span class="text-lg sm:text-xl font-black tracking-wider text-blue-900 dark:text-blue-400 block">AGP TOURS</span>
+                        <span class="text-[10px] sm:text-xs font-semibold text-orange-500 uppercase tracking-widest block -mt-1">Galle, Sri Lanka</span>
+                    </div>
+                </div>
+                
+                <!-- Center/Right Controls: Translator + WhatsApp Button -->
+                <div class="flex items-center space-x-3">
+                    <!-- Google Translate Container -->
+                    <div id="google_translate_element" class="hidden xs:block"></div>
+
+                    <a href="https://wa.me/94750212840" target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-full font-bold text-xs sm:text-sm flex items-center space-x-1.5 sm:space-x-2 transition duration-300 shadow-sm">
+                        <i class="fab fa-whatsapp text-base sm:text-lg"></i>
+                        <span>Book <span class="hidden sm:inline">via WhatsApp</span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile-only Translation Bar below Nav to keep layout tidy -->
+    <div class="block xs:hidden bg-gray-100 dark:bg-slate-900 border-b p-2 text-center">
+        <div id="google_translate_element_mobile"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="relative bg-gradient-to-br from-blue-900 via-blue-950 to-slate-900 text-white overflow-hidden py-12 lg:py-24">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div class="space-y-4 sm:space-y-6 text-center lg:text-left">
+                <div class="inline-flex items-center space-x-2 bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest">
+                    <i class="fas fa-map-marker-alt"></i> <span>Based in Galle</span>
+                </div>
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight !text-white">
+                    Experience a Comfortable & Safe Journey Around <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400">Sri Lanka</span>
+                </h1>
+                <p class="text-base sm:text-lg text-slate-300 max-w-xl mx-auto lg:mx-0 !text-slate-300">
+                    Your journey, our responsibility. Discover private tours, seamless airport transfers, and reliable long-distance travel.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 pt-2">
+                    <a href="#booking-form" class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-xl font-bold text-center transition duration-300 shadow-lg shadow-orange-500/20 flex items-center justify-center space-x-3">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Book Your Ride</span>
+                    </a>
+                    <a href="#gallery" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-6 py-3.5 sm:px-8 sm:py-4 rounded-xl font-bold text-center transition duration-300 backdrop-blur-sm">
+                        View Our Vehicle
+                    </a>
+                </div>
+            </div>
+            <div class="relative flex justify-center mt-4 lg:mt-0">
+                <div class="relative w-full max-w-md sm:max-w-lg bg-slate-800/50 p-2 sm:p-3 rounded-2xl border border-slate-700/50 shadow-2xl backdrop-blur-sm">
+                    <img src="Img/1000395660.jpg" alt="AGP Tours Toyota Corolla 110 front view" class="rounded-xl w-full h-56 sm:h-72 md:h-96 object-cover shadow-inner" onerror="handleImgError(this, '1000395660')">
+                    <div class="absolute -bottom-3 -left-2 sm:-left-4 bg-blue-600 text-white px-3 py-1.5 sm:px-4 sm:py-2.5 rounded-xl font-bold shadow-lg text-xs sm:text-sm flex items-center space-x-2">
+                        <i class="fas fa-car"></i>
+                        <span>Toyota Corolla 110</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Services Section -->
+    <section class="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+            <h2 class="text-2xl sm:text-4xl font-black tracking-tight">Why Choose AGP TOURS?</h2>
+            <div class="h-1 w-16 bg-orange-500 mx-auto mt-3 rounded-full"></div>
+            <p class="mt-3 text-base sm:text-lg">We provide reliable passenger comfort and reliability across every milestone of your trip.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border hover:shadow-xl transition duration-300 group">
+                <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-xl sm:text-2xl mb-4 sm:mb-6 group-hover:bg-blue-600 group-hover:text-white transition duration-300">
+                    <i class="fas fa-snowflake"></i>
+                </div>
+                <h3 class="text-lg sm:text-xl font-bold mb-2">Fully Air Conditioned</h3>
+                <p class="text-sm leading-relaxed">Stay cool and refreshed throughout your travels, no matter the tropical weather outside.</p>
+            </div>
+            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border hover:shadow-xl transition duration-300 group">
+                <div class="w-12 h-12 sm:w-14 sm:h-14 bg-orange-50 dark:bg-orange-950/40 text-orange-500 dark:text-orange-400 rounded-xl flex items-center justify-center text-xl sm:text-2xl mb-4 sm:mb-6 group-hover:bg-orange-500 group-hover:text-white transition duration-300">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3 class="text-lg sm:text-xl font-bold mb-2">Family Comfortable</h3>
+                <p class="text-sm leading-relaxed">Spacious seating layouts optimized perfectly for family road trips and safe exploration.</p>
+            </div>
+            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border hover:shadow-xl transition duration-300 group">
+                <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-xl sm:text-2xl mb-4 sm:mb-6 group-hover:bg-blue-600 group-hover:text-white transition duration-300">
+                    <i class="fas fa-plane-departure"></i>
+                </div>
+                <h3 class="text-lg sm:text-xl font-bold mb-2">Airport Transfers</h3>
+                <p class="text-sm leading-relaxed">Punctual and stress-free pickups and drop-offs directly serving Sri Lanka's major terminals.</p>
+            </div>
+            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border hover:shadow-xl transition duration-300 group">
+                <div class="w-12 h-12 sm:w-14 sm:h-14 bg-orange-50 dark:bg-orange-950/40 text-orange-500 dark:text-orange-400 rounded-xl flex items-center justify-center text-xl sm:text-2xl mb-4 sm:mb-6 group-hover:bg-orange-500 group-hover:text-white transition duration-300">
+                    <i class="fas fa-route"></i>
+                </div>
+                <h3 class="text-lg sm:text-xl font-bold mb-2">Private & Long Tours</h3>
+                <p class="text-sm leading-relaxed">Customizable tour planning across island landmarks with local driving expertise.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vehicle Gallery Section -->
+    <section id="gallery" class="py-12 sm:py-20 bg-slate-900 text-white border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+                <h2 class="text-2xl sm:text-4xl font-black tracking-tight !text-white">Our Fleet</h2>
+                <div class="h-1 w-16 bg-orange-500 mx-auto mt-3 rounded-full"></div>
+                <p class="text-slate-400 mt-3 text-base sm:text-lg !text-slate-400">Meticulously maintained white Toyota Corolla 110 ready to deliver flawless performance.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                <div class="overflow-hidden rounded-2xl bg-slate-800 border border-slate-700/60 shadow-lg group">
+                    <img src="Img/1000395663.jpg" alt="Toyota Corolla Front View" class="w-full h-52 sm:h-64 object-cover group-hover:scale-105 transition duration-500" onerror="handleImgError(this, '1000395663')">
+                    <div class="p-3 sm:p-4 text-center text-xs sm:text-sm font-semibold text-slate-300">Sleek Front Profile</div>
+                </div>
+                <div class="overflow-hidden rounded-2xl bg-slate-800 border border-slate-700/60 shadow-lg group">
+                    <img src="Img/1000395660.jpg" alt="Toyota Corolla Scenic View" class="w-full h-52 sm:h-64 object-cover group-hover:scale-105 transition duration-500" onerror="handleImgError(this, '1000395660')">
+                    <div class="p-3 sm:p-4 text-center text-xs sm:text-sm font-semibold text-slate-300">Touring Galle Fort</div>
+                </div>
+                <div class="overflow-hidden rounded-2xl bg-slate-800 border border-slate-700/60 shadow-lg group">
+                    <img src="Img/1000395661.jpg" alt="Toyota Corolla Rear View" class="w-full h-52 sm:h-64 object-cover group-hover:scale-105 transition duration-500" onerror="handleImgError(this, '1000395661')">
+                    <div class="p-3 sm:p-4 text-center text-xs sm:text-sm font-semibold text-slate-300">Clean Rear Design</div>
+                </div>
+                <div class="overflow-hidden rounded-2xl bg-slate-800 border border-slate-700/60 shadow-lg group">
+                    <img src="Img/1000395662.jpg" alt="Toyota Corolla Side Profile" class="w-full h-52 sm:h-64 object-cover group-hover:scale-105 transition duration-500" onerror="handleImgError(this, '1000395662')">
+                    <div class="p-3 sm:p-4 text-center text-xs sm:text-sm font-semibold text-slate-300">Spacious Cargo & Body</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vehicle Specifications & Amenities Section -->
+    <section class="py-12 sm:py-20 bg-gray-50 border-t border-b transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-orange-500 bg-orange-50 dark:bg-orange-950/40 dark:text-orange-400 px-3 py-1 rounded-full">Onboard Comfort</span>
+                <h2 class="text-2xl sm:text-4xl font-black tracking-tight mt-3">Vehicle Specs & Features</h2>
+                <div class="h-1 w-16 bg-orange-500 mx-auto mt-3 rounded-full"></div>
+                <p class="mt-3 text-base sm:text-lg">Take a look inside the Toyota Corolla 110. Every detail is optimized for passenger relaxation and luggage security.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-6xl mx-auto">
+                <!-- Left Column: Highlight Image -->
+                <div class="relative flex justify-center">
+                    <div class="relative w-full bg-white p-3 rounded-3xl border shadow-xl">
+                        <img src="Img/1000395663.jpg" alt="Toyota Corolla 110 Amenities Highlight" class="rounded-2xl w-full h-64 sm:h-80 object-cover shadow-inner" onerror="handleImgError(this, '1000395663')">
+                        <div class="absolute top-6 right-6 bg-slate-950/80 backdrop-blur-sm text-white px-3 py-1.5 rounded-xl font-bold text-xs flex items-center space-x-2">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <span>Inspected & Cleaned Daily</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Specs Table & Perks Grid -->
+                <div class="space-y-6">
+                    <!-- Tech Specs Table Layout -->
+                    <div class="bg-white border rounded-2xl p-6 shadow-sm">
+                        <h3 class="text-lg font-black mb-4 flex items-center space-x-2">
+                            <i class="fas fa-sliders-h text-orange-500"></i>
+                            <span>Capacity & Configuration</span>
+                        </h3>
+                        <div class="divide-y text-sm">
+                            <div class="flex justify-between py-3">
+                                <span class="text-gray-500 dark:text-slate-400 font-medium">Seating Capacity</span>
+                                <span class="font-bold">4 Passengers + 1 Driver</span>
+                            </div>
+                            <div class="flex justify-between py-3">
+                                <span class="text-gray-500 dark:text-slate-400 font-medium">Luggage Compartment</span>
+                                <span class="font-bold">2 Large Suitcases + 2 Hand Bags</span>
+                            </div>
+                            <div class="flex justify-between py-3">
+                                <span class="text-gray-500 dark:text-slate-400 font-medium">Fuel System Type</span>
+                                <span class="font-bold text-emerald-600 dark:text-emerald-400">Highly Fuel Efficient</span>
+                            </div>
+                            <div class="flex justify-between py-3">
+                                <span class="text-gray-500 dark:text-slate-400 font-medium">Safety Setup</span>
+                                <span class="font-bold">SRS Airbags & ABS Braking</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Amenities Quick Icons Badges Grid -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white border p-4 rounded-xl flex items-center space-x-3 shadow-sm">
+                            <div class="w-10 h-10 bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 rounded-lg flex items-center justify-center text-base shrink-0">
+                                <i class="fas fa-charging-station"></i>
+                            </div>
+                            <div>
+                                <span class="block font-bold text-xs sm:text-sm">USB Chargers</span>
+                                <span class="block text-[11px] text-gray-400">Power on the move</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-white border p-4 rounded-xl flex items-center space-x-3 shadow-sm">
+                            <div class="w-10 h-10 bg-orange-50 dark:bg-orange-950/40 text-orange-500 dark:text-orange-400 rounded-lg flex items-center justify-center text-base shrink-0">
+                                <i class="fas fa-music"></i>
+                            </div>
+                            <div>
+                                <span class="block font-bold text-xs sm:text-sm">Bluetooth Audio</span>
+                                <span class="block text-[11px] text-gray-400">Play your custom mix</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-white border p-4 rounded-xl flex items-center space-x-3 shadow-sm">
+                            <div class="w-10 h-10 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-500 dark:text-emerald-400 rounded-lg flex items-center justify-center text-base shrink-0">
+                                <i class="fas fa-couch"></i>
+                            </div>
+                            <div>
+                                <span class="block font-bold text-xs sm:text-sm">Premium Seats</span>
+                                <span class="block text-[11px] text-gray-400">Plush interior lining</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-white border p-4 rounded-xl flex items-center space-x-3 shadow-sm">
+                            <div class="w-10 h-10 bg-cyan-50 dark:bg-cyan-950/40 text-cyan-500 dark:text-cyan-400 rounded-lg flex items-center justify-center text-base shrink-0">
+                                <i class="fas fa-wind"></i>
+                            </div>
+                            <div>
+                                <span class="block font-bold text-xs sm:text-sm">Dual Zone AC</span>
+                                <span class="block text-[11px] text-gray-400">Chilled cabin zoning</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Methods Section -->
+    <section class="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+            <h2 class="text-2xl sm:text-4xl font-black tracking-tight">Accepted Payment Methods</h2>
+            <div class="h-1 w-16 bg-orange-500 mx-auto mt-3 rounded-full"></div>
+            <p class="mt-3 text-base sm:text-lg">Flexible options designed to ensure convenient payment settlement for both local and foreign commuters.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
+            <!-- Cash Payments -->
+            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-md border text-center">
+                <div class="w-12 h-12 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-500 rounded-full flex items-center justify-center text-xl mx-auto mb-4">
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+                <h3 class="text-lg font-bold mb-2">Cash on Trip</h3>
+                <p class="text-sm">We widely accept cash payments. Settled conveniently in <strong>LKR, USD, or EUR</strong> directly upon destination arrival.</p>
+            </div>
+
+            <!-- Bank Transfers -->
+            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-md border text-center">
+                <div class="w-12 h-12 bg-blue-50 dark:bg-blue-950/40 text-blue-500 rounded-full flex items-center justify-center text-xl mx-auto mb-4">
+                    <i class="fas fa-university"></i>
+                </div>
+                <h3 class="text-lg font-bold mb-2">Local Bank Transfer</h3>
+                <p class="text-sm">Direct online bank transactions are available. Transfer receipts can be shared via WhatsApp upon confirmation.</p>
+            </div>
+
+            <!-- Card Payments/Apps Option -->
+            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-md border text-center">
+                <div class="w-12 h-12 bg-orange-50 dark:bg-orange-950/40 text-orange-500 rounded-full flex items-center justify-center text-xl mx-auto mb-4">
+                    <i class="fas fa-qrcode"></i>
+                </div>
+                <h3 class="text-lg font-bold mb-2">Digital Payment Apps</h3>
+                <p class="text-sm">Supports standard local digital payment transfer setups or custom arrangements made beforehand via chat.</p>
+            </div>
+        </div>
+
+        <!-- Info Notification Bar -->
+        <div class="max-w-3xl mx-auto mt-8 bg-blue-50/50 border border-blue-100 dark:border-slate-800 p-4 rounded-xl flex items-center space-x-3 text-left">
+            <i class="fas fa-info-circle text-blue-500 text-lg shrink-0"></i>
+            <p class="text-xs sm:text-sm">
+                <strong>No upfront deposit required</strong> for standard local transfers. Pricing schedules are finalized transparently over WhatsApp prior to vehicle departure.
+            </p>
+        </div>
+    </section>
+
+    <!-- Interactive Route Map Preview Section -->
+    <section class="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-gray-100">
+        <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+            <h2 class="text-2xl sm:text-4xl font-black tracking-tight">Popular Routes From Galle</h2>
+            <div class="h-1 w-16 bg-orange-500 mx-auto mt-3 rounded-full"></div>
+            <p class="mt-3 text-base sm:text-lg">Click a destination below to check your travel timeline, estimated duration, and highway milestones layout.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            <!-- Left Side Selectable Tabs -->
+            <div class="space-y-3 flex flex-col">
+                <button onclick="switchRoute('airport')" id="btn-airport" class="route-btn text-left p-5 rounded-2xl border font-bold flex items-center justify-between cursor-pointer transition duration-200 bg-white">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center"><i class="fas fa-plane"></i></div>
+                        <div>
+                            <span class="block font-extrabold text-sm sm:text-base btn-title-text">Colombo Airport (BIA)</span>
+                            <span class="block text-xs font-medium btn-sub-text">Via Highway Transfer</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right arrow-icon"></i>
+                </button>
+
+                <button onclick="switchRoute('ella')" id="btn-ella" class="route-btn text-left p-5 rounded-2xl border font-bold flex items-center justify-between cursor-pointer transition duration-200 bg-white">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-emerald-600 text-white rounded-xl flex items-center justify-center"><i class="fas fa-mountain"></i></div>
+                        <div>
+                            <span class="block font-extrabold text-sm sm:text-base btn-title-text">Ella (Hill Country)</span>
+                            <span class="block text-xs font-medium btn-sub-text">Scenic Mountains Trip</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right arrow-icon"></i>
+                </button>
+
+                <button onclick="switchRoute('mirissa')" id="btn-mirissa" class="route-btn text-left p-5 rounded-2xl border font-bold flex items-center justify-between cursor-pointer transition duration-200 bg-white">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-amber-500 text-white rounded-xl flex items-center justify-center"><i class="fas fa-water"></i></div>
+                        <div>
+                            <span class="block font-extrabold text-sm sm:text-base btn-title-text">Mirissa / Matara</span>
+                            <span class="block text-xs font-medium btn-sub-text">Beautiful South Coast Run</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right arrow-icon"></i>
+                </button>
+            </div>
+
+            <!-- Right Side Live Changing Dynamic Route Map Card -->
+            <div class="lg:col-span-2 bg-white rounded-3xl shadow-xl border p-6 sm:p-8 transition-colors duration-300">
+                <!-- Meta Statistics Badge bar -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 border-b pb-5 mb-6">
+                    <div>
+                        <span class="block text-[11px] uppercase tracking-wider font-bold text-gray-400">Total Distance</span>
+                        <span id="route-distance" class="text-lg sm:text-xl font-black text-gray-900 dark:text-white">125 km</span>
+                    </div>
+                    <div>
+                        <span class="block text-[11px] uppercase tracking-wider font-bold text-gray-400">Estimated Duration</span>
+                        <span id="route-duration" class="text-lg sm:text-xl font-black !text-orange-500">1h 45m</span>
+                    </div>
+                    <div class="col-span-2 sm:col-span-1">
+                        <span class="block text-[11px] uppercase tracking-wider font-bold text-gray-400">Route Feature</span>
+                        <span id="route-feature" class="text-xs font-bold text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 dark:text-emerald-400 px-2 py-0.5 rounded-md inline-block mt-0.5">Highway Included</span>
+                    </div>
+                </div>
+
+                <!-- Visual Route Timeline Graphics -->
+                <div id="timeline-container" class="space-y-6 relative before:absolute before:left-3.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-gray-200 dark:before:bg-slate-800">
+                    <!-- Dynamic segments inject here via script -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Frequently Asked Questions Section -->
+    <section class="py-12 sm:py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-gray-100">
+        <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+            <h2 class="text-2xl sm:text-4xl font-black tracking-tight">Frequently Asked Questions</h2>
+            <div class="h-1 w-16 bg-orange-500 mx-auto mt-3 rounded-full"></div>
+            <p class="mt-3 text-base sm:text-lg">Got doubts about operations? Here are direct, clear answers to help plan your ride.</p>
+        </div>
+
+        <div class="space-y-4">
+            <div class="bg-white border rounded-2xl p-5 shadow-sm">
+                <h4 class="font-extrabold text-sm sm:text-base">Are highway toll charges included in the quote?</h4>
+                <p class="text-xs sm:text-sm mt-2">Yes! All standard highway fees and airport entrance toll cards are fully bundled upfront into your finalized WhatsApp pricing schedule.</p>
+            </div>
+            <div class="bg-white border rounded-2xl p-5 shadow-sm">
+                <h4 class="font-extrabold text-sm sm:text-base">What happens if my incoming airport flight gets delayed?</h4>
+                <p class="text-xs sm:text-sm mt-2">No worries at all. We monitor active airline schedules live. Your driver waits at the arrival lobby unconditionally without adding late penalties.</p>
+            </div>
+            <div class="bg-white border rounded-2xl p-5 shadow-sm">
+                <h4 class="font-extrabold text-sm sm:text-base">How much heavy luggage can the car accommodate?</h4>
+                <p class="text-xs sm:text-sm mt-2">The Toyota Corolla 110 contains a highly spacious trunk layout built easily to clear up to 2-3 standard large suitcases plus small cabin accessory bags comfortably.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Form Section Layout -->
+    <section id="booking-form" class="py-12 sm:py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-3xl shadow-xl border p-6 sm:p-10 transition-colors duration-300">
+            <div class="text-center max-w-xl mx-auto mb-8 sm:mb-10">
+                <span class="text-xs font-bold uppercase tracking-widest text-orange-500 bg-orange-50 px-3 py-1 rounded-full">Instant Quote</span>
+                <h2 class="text-2xl sm:text-3xl font-black mt-3 tracking-tight">Plan Your Journey</h2>
+                <p class="mt-2 text-sm sm:text-base">Fill out the quick form below to request a ride breakdown or custom tour quotation via WhatsApp instantly.</p>
+            </div>
+
+            <form onsubmit="sendBookingWhatsApp(event)" class="space-y-5 sm:space-y-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-sm font-bold mb-2">Your Name</label>
+                        <div class="relative">
+                            <i class="fas fa-user absolute left-4 top-3.5 text-gray-400"></i>
+                            <input type="text" id="bk-name" required placeholder="e.g. John Doe" class="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition text-sm bg-white">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold mb-2">Travel Date</label>
+                        <div class="relative">
+                            <i class="fas fa-calendar-alt absolute left-4 top-3.5 text-gray-400"></i>
+                            <input type="date" id="bk-date" required onclick="this.showPicker()" class="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition text-sm bg-white cursor-pointer">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-sm font-bold mb-2">Pickup Location</label>
+                        <div class="relative">
+                            <i class="fas fa-map-marker-alt absolute left-4 top-3.5 text-gray-400"></i>
+                            <input type="text" id="bk-pickup" required placeholder="e.g. Galle Fort / Hotel Name" class="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition text-sm bg-white">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold mb-2">Drop-off Destination</label>
+                        <div class="relative">
+                            <i class="fas fa-flag-checkered absolute left-4 top-3.5 text-gray-400"></i>
+                            <input type="text" id="bk-drop" required placeholder="e.g. Colombo Airport (BIA) / Ella" class="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition text-sm bg-white">
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold mb-2">Service Type</label>
+                    <select id="bk-service" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition text-sm bg-white">
+                        <option value="One-Way Transfer">One-Way Drop / Transfer</option>
+                        <option value="Round Trip">Round Trip (Return)</option>
+                        <option value="Airport Pickup">Airport Pickup / Drop-off</option>
+                        <option value="Multi-Day Tour">Custom Multi-Day Sri Lanka Tour</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold mb-2">Additional Requests / Notes (Optional)</label>
+                    <textarea id="bk-notes" rows="3" placeholder="e.g. Flight number, amount of luggage, intermediate stops..." class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition text-sm resize-none bg-white"></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg shadow-orange-500/10 transition duration-300 flex items-center justify-center space-x-2 cursor-pointer">
+                    <i class="fab fa-whatsapp text-xl"></i>
+                    <span>Send Booking Inquiry via WhatsApp</span>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Call to Action Banner -->
+    <section class="keep-light py-12 sm:py-16 bg-gradient-to-r from-orange-500 to-amber-500 text-white text-center px-4 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[linear-gradient(45deg,#fff_25%,transparent_25%,transparent_50%,#fff_50%,#fff_75%,transparent_75%,transparent)] bg-[size:40px_40px]"></div>
+        <div class="max-w-4xl mx-auto relative z-10 space-y-4 sm:space-y-6">
+            <h2 class="text-2xl sm:text-4xl font-black tracking-tight !text-white">Ready to Book Your Next Adventure?</h2>
+            <p class="text-base sm:text-lg font-medium max-w-xl mx-auto !text-orange-100">Get an instant upfront quote for your destination anywhere across Sri Lanka today.</p>
+            <div class="flex flex-col sm:flex-row justify-center items-stretch sm:items-center gap-3 pt-2 max-w-md mx-auto sm:max-w-none">
+                <a href="https://wa.me/94750212840" target="_blank" class="bg-blue-950 hover:bg-blue-900 text-white px-6 py-3.5 sm:px-8 sm:py-4 rounded-xl font-bold shadow-xl transition duration-300 flex items-center justify-center space-x-3">
+                    <i class="fab fa-whatsapp text-xl text-emerald-400"></i>
+                    <span>Message on WhatsApp</span>
+                </a>
+                <a href="tel:0750212840" class="bg-white text-blue-950 hover:bg-gray-100 px-6 py-3.5 sm:px-8 sm:py-4 rounded-xl font-bold shadow-xl transition duration-300 flex items-center justify-center space-x-3">
+                    <i class="fas fa-phone-alt text-orange-500"></i>
+                    <span>Call 075 021 2840</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-10 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex flex-col sm:flex-row items-center text-center sm:text-left gap-3">
+                <img src="Img/logo.jpg" alt="AGP Tours Logo" class="h-10 w-10 object-contain brightness-90 rounded" onerror="handleImgError(this, 'logo')">
+                <p class="text-sm font-semibold tracking-wider text-slate-200">AGP TOURS • Travel Safe • Travel Comfortable</p>
+            </div>
+            <div class="text-center md:text-right text-xs space-y-1">
+                <p>&copy; 2026 AGP TOURS Galle. All rights reserved.</p>
+                <p class="text-slate-600">Your journey, our responsibility ✨</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Mode Toggle Button -->
+    <button id="theme-toggle" class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 bg-white text-blue-950 w-12 h-12 sm:w-14 sm:h-14 rounded-full shadow-2xl border border-gray-200 flex items-center justify-center text-lg sm:text-xl cursor-pointer hover:scale-110 active:scale-95 transition duration-200" aria-label="Toggle Theme">
+        <i id="theme-icon" class="fas fa-moon"></i>
+    </button>
+
+    <!-- Google Translate Core Scripts -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            // Setup target layout based on whether device size is mobile or desktop
+            const targetElement = window.innerWidth < 500 ? 'google_translate_element_mobile' : 'google_translate_element';
+            
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                /* Targeted languages: French, German, Russian, Hindi, Italian, Spanish, Chinese, Dutch, Japanese */
+                includedLanguages: 'en,fr,de,ru,hi,it,es,zh-CN,nl,ja',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, targetElement);
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script>
+        // ROUTE MAP PREVIEW ENGINE DATA STORAGE
+        const routesData = {
+            airport: {
+                distance: "125 km", duration: "1h 45m", feature: "Highway Included",
+                steps: [
+                    { title: "Pickup Location", desc: "Galle Fort or anywhere around Galle city hotels.", icon: "fa-map-marker-alt", color: "text-orange-500" },
+                    { title: "Southern Expressway (E01)", desc: "Enter via Pinnaduwa Interchange for a fast, traffic-free cruise.", icon: "fa-road", color: "text-blue-600" },
+                    { title: "Outer Circular Expressway", desc: "Seamless bypass avoiding internal Colombo city congestion.", icon: "fa-circle-notch", color: "text-indigo-600" },
+                    { title: "Bandaranaike Airport (BIA)", desc: "Direct doorstep drop-off right at the departure terminal gates.", icon: "fa-plane-arrival", color: "text-emerald-500" }
+                ]
+            },
+            ella: {
+                distance: "195 km", duration: "3h 45m", feature: "Scenic / Express Combination",
+                steps: [
+                    { title: "Galle Departure", desc: "Early morning departure recommended for premium mountain views.", icon: "fa-compass", color: "text-orange-500" },
+                    { title: "Mattala Highway Segment", desc: "Smooth high-speed expressway travel through the southern plain.", icon: "fa-bolt", color: "text-blue-600" },
+                    { title: "Wellawaya Scenic Pass", desc: "Begin a beautiful winding climb flanked by local waterfalls and hills.", icon: "fa-cloud-sun-rain", color: "text-amber-500" },
+                    { title: "Ella Town Drop-off", desc: "Arrival at your hotel or directly near the Nine Arch Bridge.", icon: "fa-mountain", color: "text-emerald-500" }
+                ]
+            },
+            mirissa: {
+                distance: "35 km", duration: "45 mins", feature: "Coastal Route Run",
+                steps: [
+                    { title: "Galle Hub Start", desc: "Direct beach-road pickup following the vibrant Southern coastline.", icon: "fa-umbrella-beach", color: "text-orange-500" },
+                    { title: "Unawatuna & Ahangama", desc: "Drive past iconic surf breaks and traditional stilt fishermen posts.", icon: "fa-water", color: "text-cyan-500" },
+                    { title: "Weligama Bay Bypass", desc: "Cruising alongside sandy bays loved heavily by international tourists.", icon: "fa-fish", color: "text-blue-500" },
+                    { title: "Mirissa Harbor / Beach", desc: "Drop-off complete directly at your whale watching or hotel stay spot.", icon: "fa-map-pin", color: "text-emerald-500" }
+                ]
+            }
+        };
+
+        // Switch active route timeline renderer
+        function switchRoute(key) {
+            document.querySelectorAll('.route-btn').forEach(btn => {
+                btn.className = "route-btn text-left p-5 rounded-2xl border bg-white shadow-sm font-bold flex items-center justify-between cursor-pointer transition duration-200 hover:border-orange-200";
+                
+                btn.querySelector('.btn-title-text').className = "block font-extrabold text-sm sm:text-base btn-title-text text-blue-950 dark:text-white";
+                btn.querySelector('.btn-sub-text').className = "block text-xs font-medium btn-sub-text text-gray-500 dark:text-slate-400";
+                btn.querySelector('.arrow-icon').className = "fas fa-chevron-right arrow-icon text-gray-400 dark:text-slate-600";
+            });
+
+            const activeBtn = document.getElementById(`btn-${key}`);
+            activeBtn.className = "route-btn active text-left p-5 rounded-2xl border border-orange-500 bg-orange-50/40 shadow-md font-bold flex items-center justify-between cursor-pointer transition duration-200";
+            activeBtn.querySelector('.btn-title-text').className = "block font-extrabold text-sm sm:text-base btn-title-text text-orange-600 dark:text-orange-400";
+            activeBtn.querySelector('.btn-sub-text').className = "block text-xs font-medium btn-sub-text text-orange-500 dark:text-slate-300";
+            activeBtn.querySelector('.arrow-icon').className = "fas fa-chevron-right arrow-icon text-orange-500 dark:text-orange-400";
+
+            const data = routesData[key];
+            document.getElementById('route-distance').innerText = data.distance;
+            document.getElementById('route-duration').innerText = data.duration;
+            document.getElementById('route-feature').innerText = data.feature;
+
+            const container = document.getElementById('timeline-container');
+            container.innerHTML = '';
+
+            data.steps.forEach(step => {
+                const stepHtml = `
+                    <div class="flex items-start space-x-4 relative z-10">
+                        <div class="w-8 h-8 rounded-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 flex items-center justify-center shadow-sm shrink-0">
+                            <i class="fas ${step.icon} text-xs ${step.color}"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-extrabold text-sm sm:text-base">${step.title}</h4>
+                            <p class="text-xs sm:text-sm mt-0.5 leading-relaxed">${step.desc}</p>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += stepHtml;
+            });
+        }
+
+        switchRoute('airport');
+
+        function sendBookingWhatsApp(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('bk-name').value;
+            const date = document.getElementById('bk-date').value;
+            const pickup = document.getElementById('bk-pickup').value;
+            const drop = document.getElementById('bk-drop').value;
+            const service = document.getElementById('bk-service').value;
+            const notes = document.getElementById('bk-notes').value || "None";
+            
+            const textMessage = `Hello AGP TOURS! I would like to check availability/quote details:\n\n` +
+                                `• *Name:* ${name}\n` +
+                                `• *Date:* ${date}\n` +
+                                `• *Service:* ${service}\n` +
+                                `• *Pickup:* ${pickup}\n` +
+                                `• *Drop-off:* ${drop}\n` +
+                                `• *Notes:* ${notes}`;
+            
+            const whatsappUrl = `https://wa.me/94750212840?text=${encodeURIComponent(textMessage)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        
+        function updateIcon() {
+            if (document.documentElement.classList.contains('dark')) {
+                themeIcon.className = 'fas fa-sun';
+            } else {
+                themeIcon.className = 'fas fa-moon';
+            }
+        }
+
+        updateIcon();
+        
+        themeToggleBtn.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+            updateIcon();
+            
+            const activeBtn = document.querySelector('.route-btn.active');
+            if(activeBtn) {
+                const activeId = activeBtn.id.replace('btn-', '');
+                switchRoute(activeId);
+            }
+        });
+    </script>
+</body>
+</html>
