@@ -24,7 +24,7 @@
         html.dark {
             --text-heading: #f1f5f9; /* slate-100 */
             --text-body: #cbd5e1;    /* slate-300 */
-            --bg-card: #0f172a;     /* slate-900 */
+            --bg-card: #0f172a;      /* slate-900 */
             --border-color: #1e293b; /* slate-800 */
         }
 
@@ -126,6 +126,19 @@
         body {
             top: 0px !important;
         }
+        
+        /* Active Route Button Styling */
+        .route-btn.active {
+            border-color: #f97316; /* orange-500 */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        html.dark .route-btn.active {
+            background-color: #1e293b; /* slate-800 */
+        }
+        .route-btn.active .arrow-icon {
+            color: #f97316;
+            transform: translateX(4px);
+        }
     </style>
 
     <script>
@@ -144,7 +157,7 @@
             
             if (index < formats.length) {
                 img.setAttribute('data-retry-index', index + 1);
-                img.src = 'Img/' + baseName + formats[index];
+                img.src = baseName + formats[index];
             }
         }
     </script>
@@ -156,15 +169,20 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
                 <div class="flex items-center space-x-2 sm:space-x-3">
-                    <img src="Img/logo.jpg" alt="AGP Tours Logo" class="h-11 w-11 sm:h-14 sm:w-14 object-contain rounded-lg" onerror="handleImgError(this, 'logo')">
+                    <img src="Logo.jpeg" alt="AGP Tours Logo" class="h-11 w-11 sm:h-14 sm:w-14 object-contain rounded-lg" onerror="handleImgError(this, 'logo')">
                     <div>
                         <span class="text-lg sm:text-xl font-black tracking-wider text-blue-900 dark:text-blue-400 block">AGP TOURS</span>
                         <span class="text-[10px] sm:text-xs font-semibold text-orange-500 uppercase tracking-widest block -mt-1">Galle, Sri Lanka</span>
                     </div>
                 </div>
                 
-                <!-- Center/Right Controls: Translator + WhatsApp Button -->
+                <!-- Center/Right Controls: Theme Toggle, Translator + WhatsApp Button -->
                 <div class="flex items-center space-x-3">
+                    <button id="theme-toggle" class="p-2 rounded-full border bg-white text-gray-500 hover:bg-gray-100 dark:hover:bg-slate-800 transition">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                    
                     <!-- Google Translate Container -->
                     <div id="google_translate_element" class="hidden xs:block"></div>
 
@@ -208,7 +226,7 @@
             </div>
             <div class="relative flex justify-center mt-4 lg:mt-0">
                 <div class="relative w-full max-w-md sm:max-w-lg bg-slate-800/50 p-2 sm:p-3 rounded-2xl border border-slate-700/50 shadow-2xl backdrop-blur-sm">
-                    <img src="1000395660.jpg" alt="AGP Tours Toyota Corolla 110 front view" class="rounded-xl w-full h-56 sm:h-72 md:h-96 object-cover shadow-inner" onerror="handleImgError(this, '1000395660')">
+                    <img src="1000395660.jpeg" alt="AGP Tours Toyota Corolla 110 front view" class="rounded-xl w-full h-56 sm:h-72 md:h-96 object-cover shadow-inner" onerror="handleImgError(this, '1000395660')">
                     <div class="absolute -bottom-3 -left-2 sm:-left-4 bg-blue-600 text-white px-3 py-1.5 sm:px-4 sm:py-2.5 rounded-xl font-bold shadow-lg text-xs sm:text-sm flex items-center space-x-2">
                         <i class="fas fa-car"></i>
                         <span>Toyota Corolla 110</span>
@@ -269,19 +287,19 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                 <div class="overflow-hidden rounded-2xl bg-slate-800 border border-slate-700/60 shadow-lg group">
-                    <img src="Img/1000395663.jpg" alt="Toyota Corolla Front View" class="w-full h-52 sm:h-64 object-cover group-hover:scale-105 transition duration-500" onerror="handleImgError(this, '1000395663')">
+                    <img src="1000395663.jpeg" alt="Toyota Corolla Front View" class="w-full h-52 sm:h-64 object-cover group-hover:scale-105 transition duration-500" onerror="handleImgError(this, '1000395663')">
                     <div class="p-3 sm:p-4 text-center text-xs sm:text-sm font-semibold text-slate-300">Sleek Front Profile</div>
                 </div>
                 <div class="overflow-hidden rounded-2xl bg-slate-800 border border-slate-700/60 shadow-lg group">
-                    <img src="Img/1000395660.jpg" alt="Toyota Corolla Scenic View" class="w-full h-52 sm:h-64 object-cover group-hover:scale-105 transition duration-500" onerror="handleImgError(this, '1000395660')">
+                    <img src="1000395660.jpeg" alt="Toyota Corolla Scenic View" class="w-full h-52 sm:h-64 object-cover group-hover:scale-105 transition duration-500" onerror="handleImgError(this, '1000395660')">
                     <div class="p-3 sm:p-4 text-center text-xs sm:text-sm font-semibold text-slate-300">Touring Galle Fort</div>
                 </div>
                 <div class="overflow-hidden rounded-2xl bg-slate-800 border border-slate-700/60 shadow-lg group">
-                    <img src="Img/1000395661.jpg" alt="Toyota Corolla Rear View" class="w-full h-52 sm:h-64 object-cover group-hover:scale-105 transition duration-500" onerror="handleImgError(this, '1000395661')">
+                    <img src="1000395661.jpeg" alt="Toyota Corolla Rear View" class="w-full h-52 sm:h-64 object-cover group-hover:scale-105 transition duration-500" onerror="handleImgError(this, '1000395661')">
                     <div class="p-3 sm:p-4 text-center text-xs sm:text-sm font-semibold text-slate-300">Clean Rear Design</div>
                 </div>
                 <div class="overflow-hidden rounded-2xl bg-slate-800 border border-slate-700/60 shadow-lg group">
-                    <img src="Img/1000395662.jpg" alt="Toyota Corolla Side Profile" class="w-full h-52 sm:h-64 object-cover group-hover:scale-105 transition duration-500" onerror="handleImgError(this, '1000395662')">
+                    <img src="1000395662.jpeg" alt="Toyota Corolla Side Profile" class="w-full h-52 sm:h-64 object-cover group-hover:scale-105 transition duration-500" onerror="handleImgError(this, '1000395662')">
                     <div class="p-3 sm:p-4 text-center text-xs sm:text-sm font-semibold text-slate-300">Spacious Cargo & Body</div>
                 </div>
             </div>
@@ -302,7 +320,7 @@
                 <!-- Left Column: Highlight Image -->
                 <div class="relative flex justify-center">
                     <div class="relative w-full bg-white p-3 rounded-3xl border shadow-xl">
-                        <img src="Img/1000395663.jpg" alt="Toyota Corolla 110 Amenities Highlight" class="rounded-2xl w-full h-64 sm:h-80 object-cover shadow-inner" onerror="handleImgError(this, '1000395663')">
+                        <img src="1000395663.jpeg" alt="Toyota Corolla 110 Amenities Highlight" class="rounded-2xl w-full h-64 sm:h-80 object-cover shadow-inner" onerror="handleImgError(this, '1000395663')">
                         <div class="absolute top-6 right-6 bg-slate-950/80 backdrop-blur-sm text-white px-3 py-1.5 rounded-xl font-bold text-xs flex items-center space-x-2">
                             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                             <span>Inspected & Cleaned Daily</span>
@@ -442,7 +460,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
             <!-- Left Side Selectable Tabs -->
             <div class="space-y-3 flex flex-col">
-                <button onclick="switchRoute('airport')" id="btn-airport" class="route-btn text-left p-5 rounded-2xl border font-bold flex items-center justify-between cursor-pointer transition duration-200 bg-white">
+                <button onclick="switchRoute('airport')" id="btn-airport" class="route-btn text-left p-5 rounded-2xl border font-bold flex items-center justify-between cursor-pointer transition duration-200 bg-white active">
                     <div class="flex items-center space-x-3">
                         <div class="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center"><i class="fas fa-plane"></i></div>
                         <div>
@@ -450,7 +468,7 @@
                             <span class="block text-xs font-medium btn-sub-text">Via Highway Transfer</span>
                         </div>
                     </div>
-                    <i class="fas fa-chevron-right arrow-icon"></i>
+                    <i class="fas fa-chevron-right arrow-icon transition-transform"></i>
                 </button>
 
                 <button onclick="switchRoute('ella')" id="btn-ella" class="route-btn text-left p-5 rounded-2xl border font-bold flex items-center justify-between cursor-pointer transition duration-200 bg-white">
@@ -461,7 +479,7 @@
                             <span class="block text-xs font-medium btn-sub-text">Scenic Mountains Trip</span>
                         </div>
                     </div>
-                    <i class="fas fa-chevron-right arrow-icon"></i>
+                    <i class="fas fa-chevron-right arrow-icon transition-transform"></i>
                 </button>
 
                 <button onclick="switchRoute('mirissa')" id="btn-mirissa" class="route-btn text-left p-5 rounded-2xl border font-bold flex items-center justify-between cursor-pointer transition duration-200 bg-white">
@@ -472,21 +490,21 @@
                             <span class="block text-xs font-medium btn-sub-text">Beautiful South Coast Run</span>
                         </div>
                     </div>
-                    <i class="fas fa-chevron-right arrow-icon"></i>
+                    <i class="fas fa-chevron-right arrow-icon transition-transform"></i>
                 </button>
             </div>
 
             <!-- Right Side Live Changing Dynamic Route Map Card -->
             <div class="lg:col-span-2 bg-white rounded-3xl shadow-xl border p-6 sm:p-8 transition-colors duration-300">
                 <!-- Meta Statistics Badge bar -->
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 border-b pb-5 mb-6">
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 border-b pb-5 mb-6 dark:border-slate-800">
                     <div>
                         <span class="block text-[11px] uppercase tracking-wider font-bold text-gray-400">Total Distance</span>
-                        <span id="route-distance" class="text-lg sm:text-xl font-black text-gray-900 dark:text-white">125 km</span>
+                        <span id="route-distance" class="text-lg sm:text-xl font-black text-gray-900 dark:text-white">150 km</span>
                     </div>
                     <div>
                         <span class="block text-[11px] uppercase tracking-wider font-bold text-gray-400">Estimated Duration</span>
-                        <span id="route-duration" class="text-lg sm:text-xl font-black !text-orange-500">1h 45m</span>
+                        <span id="route-duration" class="text-lg sm:text-xl font-black !text-orange-500">2h 15m</span>
                     </div>
                     <div class="col-span-2 sm:col-span-1">
                         <span class="block text-[11px] uppercase tracking-wider font-bold text-gray-400">Route Feature</span>
@@ -495,7 +513,7 @@
                 </div>
 
                 <!-- Visual Route Timeline Graphics -->
-                <div id="timeline-container" class="space-y-6 relative before:absolute before:left-3.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-gray-200 dark:before:bg-slate-800">
+                <div id="timeline-container" class="space-y-6 relative before:absolute before:left-3.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-gray-200 dark:before:bg-slate-700">
                     <!-- Dynamic segments inject here via script -->
                 </div>
             </div>
@@ -512,251 +530,72 @@
 
         <div class="space-y-4">
             <div class="bg-white border rounded-2xl p-5 shadow-sm">
-                <h4 class="font-extrabold text-sm sm:text-base">Are highway toll charges included in the quote?</h4>
-                <p class="text-xs sm:text-sm mt-2">Yes! All standard highway fees and airport entrance toll cards are fully bundled upfront into your finalized WhatsApp pricing schedule.</p>
+                <h4 class="font-extrabold text-sm sm:text-base">Are highway toll charges included in the price?</h4>
+                <p class="mt-2 text-sm text-gray-600 dark:text-slate-400">Yes, when you book a highway route with us, all expressway toll fees are calculated and included in your final upfront quotation. There are no hidden fees.</p>
             </div>
+            
             <div class="bg-white border rounded-2xl p-5 shadow-sm">
-                <h4 class="font-extrabold text-sm sm:text-base">What happens if my incoming airport flight gets delayed?</h4>
-                <p class="text-xs sm:text-sm mt-2">No worries at all. We monitor active airline schedules live. Your driver waits at the arrival lobby unconditionally without adding late penalties.</p>
+                <h4 class="font-extrabold text-sm sm:text-base">How much luggage can the car hold?</h4>
+                <p class="mt-2 text-sm text-gray-600 dark:text-slate-400">The Toyota Corolla 110 trunk comfortably fits up to 2 large hard-shell suitcases along with 2 standard hand bags or backpacks.</p>
             </div>
+
             <div class="bg-white border rounded-2xl p-5 shadow-sm">
-                <h4 class="font-extrabold text-sm sm:text-base">How much heavy luggage can the car accommodate?</h4>
-                <p class="text-xs sm:text-sm mt-2">The Toyota Corolla 110 contains a highly spacious trunk layout built easily to clear up to 2-3 standard large suitcases plus small cabin accessory bags comfortably.</p>
+                <h4 class="font-extrabold text-sm sm:text-base">Do you operate late-night airport pickups?</h4>
+                <p class="mt-2 text-sm text-gray-600 dark:text-slate-400">Absolutely. We operate 24/7 for all pre-booked airport transfers to ensure you are securely picked up regardless of your flight's arrival time.</p>
+            </div>
+            
+            <div class="bg-white border rounded-2xl p-5 shadow-sm">
+                <h4 class="font-extrabold text-sm sm:text-base">Can we make stops along the way for food or photos?</h4>
+                <p class="mt-2 text-sm text-gray-600 dark:text-slate-400">Yes! We understand travel is about the journey. Short breaks for meals, restrooms, or quick photo opportunities along the direct route are perfectly fine.</p>
             </div>
         </div>
     </section>
 
-    <!-- Booking Form Section Layout -->
-    <section id="booking-form" class="py-12 sm:py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-white rounded-3xl shadow-xl border p-6 sm:p-10 transition-colors duration-300">
-            <div class="text-center max-w-xl mx-auto mb-8 sm:mb-10">
-                <span class="text-xs font-bold uppercase tracking-widest text-orange-500 bg-orange-50 px-3 py-1 rounded-full">Instant Quote</span>
-                <h2 class="text-2xl sm:text-3xl font-black mt-3 tracking-tight">Plan Your Journey</h2>
-                <p class="mt-2 text-sm sm:text-base">Fill out the quick form below to request a ride breakdown or custom tour quotation via WhatsApp instantly.</p>
+    <!-- Booking CTA Section -->
+    <section id="booking-form" class="py-12 sm:py-20 bg-blue-900 dark:bg-slate-900 keep-light">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <i class="fab fa-whatsapp text-4xl sm:text-5xl text-emerald-400 mb-6 block"></i>
+            <h2 class="text-3xl sm:text-5xl font-black tracking-tight mb-4">Ready to Book Your Journey?</h2>
+            <p class="text-lg mb-8 max-w-2xl mx-auto opacity-90">Skip the complicated forms. Message us directly on WhatsApp with your pickup details, and we'll confirm your ride in minutes.</p>
+            
+            <div class="bg-white/10 p-6 rounded-2xl backdrop-blur-md border border-white/20 inline-block text-left mb-8 w-full sm:w-auto">
+                <p class="text-sm font-bold text-white mb-3 uppercase tracking-wider">Please include in your message:</p>
+                <ul class="text-white/90 space-y-2 text-sm">
+                    <li><i class="fas fa-check text-emerald-400 w-5"></i> Date and time of travel</li>
+                    <li><i class="fas fa-check text-emerald-400 w-5"></i> Pickup location (Hotel/Airport)</li>
+                    <li><i class="fas fa-check text-emerald-400 w-5"></i> Drop-off destination</li>
+                    <li><i class="fas fa-check text-emerald-400 w-5"></i> Number of passengers</li>
+                </ul>
             </div>
-
-            <form onsubmit="sendBookingWhatsApp(event)" class="space-y-5 sm:space-y-6">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div>
-                        <label class="block text-sm font-bold mb-2">Your Name</label>
-                        <div class="relative">
-                            <i class="fas fa-user absolute left-4 top-3.5 text-gray-400"></i>
-                            <input type="text" id="bk-name" required placeholder="e.g. John Doe" class="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition text-sm bg-white">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold mb-2">Travel Date</label>
-                        <div class="relative">
-                            <i class="fas fa-calendar-alt absolute left-4 top-3.5 text-gray-400"></i>
-                            <input type="date" id="bk-date" required onclick="this.showPicker()" class="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition text-sm bg-white cursor-pointer">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div>
-                        <label class="block text-sm font-bold mb-2">Pickup Location</label>
-                        <div class="relative">
-                            <i class="fas fa-map-marker-alt absolute left-4 top-3.5 text-gray-400"></i>
-                            <input type="text" id="bk-pickup" required placeholder="e.g. Galle Fort / Hotel Name" class="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition text-sm bg-white">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold mb-2">Drop-off Destination</label>
-                        <div class="relative">
-                            <i class="fas fa-flag-checkered absolute left-4 top-3.5 text-gray-400"></i>
-                            <input type="text" id="bk-drop" required placeholder="e.g. Colombo Airport (BIA) / Ella" class="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition text-sm bg-white">
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-sm font-bold mb-2">Service Type</label>
-                    <select id="bk-service" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition text-sm bg-white">
-                        <option value="One-Way Transfer">One-Way Drop / Transfer</option>
-                        <option value="Round Trip">Round Trip (Return)</option>
-                        <option value="Airport Pickup">Airport Pickup / Drop-off</option>
-                        <option value="Multi-Day Tour">Custom Multi-Day Sri Lanka Tour</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="block text-sm font-bold mb-2">Additional Requests / Notes (Optional)</label>
-                    <textarea id="bk-notes" rows="3" placeholder="e.g. Flight number, amount of luggage, intermediate stops..." class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition text-sm resize-none bg-white"></textarea>
-                </div>
-
-                <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg shadow-orange-500/10 transition duration-300 flex items-center justify-center space-x-2 cursor-pointer">
-                    <i class="fab fa-whatsapp text-xl"></i>
-                    <span>Send Booking Inquiry via WhatsApp</span>
-                </button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Call to Action Banner -->
-    <section class="keep-light py-12 sm:py-16 bg-gradient-to-r from-orange-500 to-amber-500 text-white text-center px-4 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 bg-[linear-gradient(45deg,#fff_25%,transparent_25%,transparent_50%,#fff_50%,#fff_75%,transparent_75%,transparent)] bg-[size:40px_40px]"></div>
-        <div class="max-w-4xl mx-auto relative z-10 space-y-4 sm:space-y-6">
-            <h2 class="text-2xl sm:text-4xl font-black tracking-tight !text-white">Ready to Book Your Next Adventure?</h2>
-            <p class="text-base sm:text-lg font-medium max-w-xl mx-auto !text-orange-100">Get an instant upfront quote for your destination anywhere across Sri Lanka today.</p>
-            <div class="flex flex-col sm:flex-row justify-center items-stretch sm:items-center gap-3 pt-2 max-w-md mx-auto sm:max-w-none">
-                <a href="https://wa.me/94750212840" target="_blank" class="bg-blue-950 hover:bg-blue-900 text-white px-6 py-3.5 sm:px-8 sm:py-4 rounded-xl font-bold shadow-xl transition duration-300 flex items-center justify-center space-x-3">
-                    <i class="fab fa-whatsapp text-xl text-emerald-400"></i>
-                    <span>Message on WhatsApp</span>
+            
+            <div>
+                <a href="https://wa.me/94750212840" target="_blank" class="inline-flex items-center justify-center space-x-3 bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition duration-300 shadow-xl w-full sm:w-auto">
+                    <i class="fab fa-whatsapp text-2xl"></i>
+                    <span>Chat on WhatsApp Now</span>
                 </a>
-                <a href="tel:0750212840" class="bg-white text-blue-950 hover:bg-gray-100 px-6 py-3.5 sm:px-8 sm:py-4 rounded-xl font-bold shadow-xl transition duration-300 flex items-center justify-center space-x-3">
-                    <i class="fas fa-phone-alt text-orange-500"></i>
-                    <span>Call 075 021 2840</span>
-                </a>
+                <p class="text-white/60 text-xs mt-4">Response time: Usually within 15 minutes.</p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-slate-950 text-slate-400 py-10 border-t border-slate-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex flex-col sm:flex-row items-center text-center sm:text-left gap-3">
-                <img src="Img/logo.jpg" alt="AGP Tours Logo" class="h-10 w-10 object-contain brightness-90 rounded" onerror="handleImgError(this, 'logo')">
-                <p class="text-sm font-semibold tracking-wider text-slate-200">AGP TOURS • Travel Safe • Travel Comfortable</p>
+    <footer class="bg-slate-950 py-8 text-center text-slate-400 text-sm border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-center items-center space-x-4 mb-4">
+                <a href="https://wa.me/94750212840" class="text-slate-400 hover:text-white transition"><i class="fab fa-whatsapp text-xl"></i></a>
+                <a href="tel:+94750212840" class="text-slate-400 hover:text-white transition"><i class="fas fa-phone text-xl"></i></a>
             </div>
-            <div class="text-center md:text-right text-xs space-y-1">
-                <p>&copy; 2026 AGP TOURS Galle. All rights reserved.</p>
-                <p class="text-slate-600">Your journey, our responsibility ✨</p>
-            </div>
+            <p>&copy; 2026 AGP TOURS Galle. All rights reserved.</p>
+            <p class="mt-2 text-xs">Safe & Comfortable Passenger Transport in Sri Lanka.</p>
         </div>
     </footer>
 
-    <!-- Floating Mode Toggle Button -->
-    <button id="theme-toggle" class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 bg-white text-blue-950 w-12 h-12 sm:w-14 sm:h-14 rounded-full shadow-2xl border border-gray-200 flex items-center justify-center text-lg sm:text-xl cursor-pointer hover:scale-110 active:scale-95 transition duration-200" aria-label="Toggle Theme">
-        <i id="theme-icon" class="fas fa-moon"></i>
-    </button>
-
-    <!-- Google Translate Core Scripts -->
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            // Setup target layout based on whether device size is mobile or desktop
-            const targetElement = window.innerWidth < 500 ? 'google_translate_element_mobile' : 'google_translate_element';
-            
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                /* Targeted languages: French, German, Russian, Hindi, Italian, Spanish, Chinese, Dutch, Japanese */
-                includedLanguages: 'en,fr,de,ru,hi,it,es,zh-CN,nl,ja',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-            }, targetElement);
-        }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
+    <!-- Interactive Scripts -->
     <script>
-        // ROUTE MAP PREVIEW ENGINE DATA STORAGE
-        const routesData = {
-            airport: {
-                distance: "125 km", duration: "1h 45m", feature: "Highway Included",
-                steps: [
-                    { title: "Pickup Location", desc: "Galle Fort or anywhere around Galle city hotels.", icon: "fa-map-marker-alt", color: "text-orange-500" },
-                    { title: "Southern Expressway (E01)", desc: "Enter via Pinnaduwa Interchange for a fast, traffic-free cruise.", icon: "fa-road", color: "text-blue-600" },
-                    { title: "Outer Circular Expressway", desc: "Seamless bypass avoiding internal Colombo city congestion.", icon: "fa-circle-notch", color: "text-indigo-600" },
-                    { title: "Bandaranaike Airport (BIA)", desc: "Direct doorstep drop-off right at the departure terminal gates.", icon: "fa-plane-arrival", color: "text-emerald-500" }
-                ]
-            },
-            ella: {
-                distance: "195 km", duration: "3h 45m", feature: "Scenic / Express Combination",
-                steps: [
-                    { title: "Galle Departure", desc: "Early morning departure recommended for premium mountain views.", icon: "fa-compass", color: "text-orange-500" },
-                    { title: "Mattala Highway Segment", desc: "Smooth high-speed expressway travel through the southern plain.", icon: "fa-bolt", color: "text-blue-600" },
-                    { title: "Wellawaya Scenic Pass", desc: "Begin a beautiful winding climb flanked by local waterfalls and hills.", icon: "fa-cloud-sun-rain", color: "text-amber-500" },
-                    { title: "Ella Town Drop-off", desc: "Arrival at your hotel or directly near the Nine Arch Bridge.", icon: "fa-mountain", color: "text-emerald-500" }
-                ]
-            },
-            mirissa: {
-                distance: "35 km", duration: "45 mins", feature: "Coastal Route Run",
-                steps: [
-                    { title: "Galle Hub Start", desc: "Direct beach-road pickup following the vibrant Southern coastline.", icon: "fa-umbrella-beach", color: "text-orange-500" },
-                    { title: "Unawatuna & Ahangama", desc: "Drive past iconic surf breaks and traditional stilt fishermen posts.", icon: "fa-water", color: "text-cyan-500" },
-                    { title: "Weligama Bay Bypass", desc: "Cruising alongside sandy bays loved heavily by international tourists.", icon: "fa-fish", color: "text-blue-500" },
-                    { title: "Mirissa Harbor / Beach", desc: "Drop-off complete directly at your whale watching or hotel stay spot.", icon: "fa-map-pin", color: "text-emerald-500" }
-                ]
-            }
-        };
-
-        // Switch active route timeline renderer
-        function switchRoute(key) {
-            document.querySelectorAll('.route-btn').forEach(btn => {
-                btn.className = "route-btn text-left p-5 rounded-2xl border bg-white shadow-sm font-bold flex items-center justify-between cursor-pointer transition duration-200 hover:border-orange-200";
-                
-                btn.querySelector('.btn-title-text').className = "block font-extrabold text-sm sm:text-base btn-title-text text-blue-950 dark:text-white";
-                btn.querySelector('.btn-sub-text').className = "block text-xs font-medium btn-sub-text text-gray-500 dark:text-slate-400";
-                btn.querySelector('.arrow-icon').className = "fas fa-chevron-right arrow-icon text-gray-400 dark:text-slate-600";
-            });
-
-            const activeBtn = document.getElementById(`btn-${key}`);
-            activeBtn.className = "route-btn active text-left p-5 rounded-2xl border border-orange-500 bg-orange-50/40 shadow-md font-bold flex items-center justify-between cursor-pointer transition duration-200";
-            activeBtn.querySelector('.btn-title-text').className = "block font-extrabold text-sm sm:text-base btn-title-text text-orange-600 dark:text-orange-400";
-            activeBtn.querySelector('.btn-sub-text').className = "block text-xs font-medium btn-sub-text text-orange-500 dark:text-slate-300";
-            activeBtn.querySelector('.arrow-icon').className = "fas fa-chevron-right arrow-icon text-orange-500 dark:text-orange-400";
-
-            const data = routesData[key];
-            document.getElementById('route-distance').innerText = data.distance;
-            document.getElementById('route-duration').innerText = data.duration;
-            document.getElementById('route-feature').innerText = data.feature;
-
-            const container = document.getElementById('timeline-container');
-            container.innerHTML = '';
-
-            data.steps.forEach(step => {
-                const stepHtml = `
-                    <div class="flex items-start space-x-4 relative z-10">
-                        <div class="w-8 h-8 rounded-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 flex items-center justify-center shadow-sm shrink-0">
-                            <i class="fas ${step.icon} text-xs ${step.color}"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-extrabold text-sm sm:text-base">${step.title}</h4>
-                            <p class="text-xs sm:text-sm mt-0.5 leading-relaxed">${step.desc}</p>
-                        </div>
-                    </div>
-                `;
-                container.innerHTML += stepHtml;
-            });
-        }
-
-        switchRoute('airport');
-
-        function sendBookingWhatsApp(event) {
-            event.preventDefault();
-            
-            const name = document.getElementById('bk-name').value;
-            const date = document.getElementById('bk-date').value;
-            const pickup = document.getElementById('bk-pickup').value;
-            const drop = document.getElementById('bk-drop').value;
-            const service = document.getElementById('bk-service').value;
-            const notes = document.getElementById('bk-notes').value || "None";
-            
-            const textMessage = `Hello AGP TOURS! I would like to check availability/quote details:\n\n` +
-                                `• *Name:* ${name}\n` +
-                                `• *Date:* ${date}\n` +
-                                `• *Service:* ${service}\n` +
-                                `• *Pickup:* ${pickup}\n` +
-                                `• *Drop-off:* ${drop}\n` +
-                                `• *Notes:* ${notes}`;
-            
-            const whatsappUrl = `https://wa.me/94750212840?text=${encodeURIComponent(textMessage)}`;
-            window.open(whatsappUrl, '_blank');
-        }
-
+        // Theme Toggle Logic
         const themeToggleBtn = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
         
-        function updateIcon() {
-            if (document.documentElement.classList.contains('dark')) {
-                themeIcon.className = 'fas fa-sun';
-            } else {
-                themeIcon.className = 'fas fa-moon';
-            }
-        }
-
-        updateIcon();
-        
-        themeToggleBtn.addEventListener('click', () => {
+        themeToggleBtn.addEventListener('click', function() {
             if (document.documentElement.classList.contains('dark')) {
                 document.documentElement.classList.remove('dark');
                 localStorage.setItem('theme', 'light');
@@ -764,14 +603,102 @@
                 document.documentElement.classList.add('dark');
                 localStorage.setItem('theme', 'dark');
             }
-            updateIcon();
-            
-            const activeBtn = document.querySelector('.route-btn.active');
-            if(activeBtn) {
-                const activeId = activeBtn.id.replace('btn-', '');
-                switchRoute(activeId);
+        });
+
+        // Route Data for Interactive Map
+        const routesData = {
+            airport: {
+                distance: '150 km', duration: '2h 15m', 
+                featureText: 'Highway Included', featureColor: 'emerald',
+                timeline: [
+                    { icon: 'fa-map-marker-alt', title: 'Start: Galle', desc: 'Pickup directly from your accommodation.' },
+                    { icon: 'fa-road', title: 'Southern Expressway (E01)', desc: 'Smooth, traffic-free transit via the main highway.' },
+                    { icon: 'fa-plane-arrival', title: 'End: BIA Colombo Airport', desc: 'Direct drop-off at the departure terminal.' }
+                ]
+            },
+            ella: {
+                distance: '210 km', duration: '4h 30m', 
+                featureText: 'Scenic Route', featureColor: 'blue',
+                timeline: [
+                    { icon: 'fa-map-marker-alt', title: 'Start: Galle', desc: 'Departing from the southern coast.' },
+                    { icon: 'fa-tree', title: 'Hill Country Ascent', desc: 'Navigating beautiful, winding mountain roads.' },
+                    { icon: 'fa-mountain', title: 'End: Ella', desc: 'Safe arrival at your destination in the highlands.' }
+                ]
+            },
+            mirissa: {
+                distance: '35 km', duration: '45m', 
+                featureText: 'Coastal Drive', featureColor: 'cyan',
+                timeline: [
+                    { icon: 'fa-map-marker-alt', title: 'Start: Galle', desc: 'Quick pickup from your hotel.' },
+                    { icon: 'fa-water', title: 'Southern Coastal Line', desc: 'Stunning ocean views driving along the A2 road.' },
+                    { icon: 'fa-umbrella-beach', title: 'End: Mirissa / Matara', desc: 'Drop-off near popular beach spots.' }
+                ]
             }
+        };
+
+        function switchRoute(routeId) {
+            // Update Active Button styling
+            document.querySelectorAll('.route-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn-${routeId}`).classList.add('active');
+
+            const data = routesData[routeId];
+            
+            // Update Meta Stats
+            document.getElementById('route-distance').innerText = data.distance;
+            document.getElementById('route-duration').innerText = data.duration;
+            
+            const featureBadge = document.getElementById('route-feature');
+            featureBadge.innerText = data.featureText;
+            
+            // Reset Badge Colors
+            featureBadge.className = `text-xs font-bold px-2 py-0.5 rounded-md inline-block mt-0.5 text-${data.featureColor}-600 bg-${data.featureColor}-50 dark:bg-${data.featureColor}-950/40 dark:text-${data.featureColor}-400`;
+
+            // Build Timeline HTML
+            const timelineContainer = document.getElementById('timeline-container');
+            timelineContainer.innerHTML = ''; // clear
+
+            data.timeline.forEach((step, index) => {
+                const isLast = index === data.timeline.length - 1;
+                const dotColor = isLast ? 'bg-orange-500' : 'bg-blue-600';
+                
+                timelineContainer.innerHTML += `
+                    <div class="relative flex items-start space-x-4 group">
+                        <div class="w-7 h-7 ${dotColor} text-white rounded-full flex items-center justify-center text-[10px] z-10 shrink-0 shadow-md ring-4 ring-white dark:ring-slate-900 transition-transform group-hover:scale-110">
+                            <i class="fas ${step.icon}"></i>
+                        </div>
+                        <div class="flex-1 pb-${isLast ? '0' : '6'}">
+                            <h4 class="font-bold text-sm sm:text-base">${step.title}</h4>
+                            <p class="text-xs sm:text-sm text-gray-500 dark:text-slate-400 mt-1">${step.desc}</p>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Initialize default route on load
+        document.addEventListener('DOMContentLoaded', () => {
+            switchRoute('airport');
         });
     </script>
+
+    <!-- Google Translate Scripts -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,ru,de,fr,zh-CN,ar,es',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+            
+            // Mirror translation element to mobile view
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,ru,de,fr,zh-CN,ar,es',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element_mobile');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 </html>
